@@ -18,3 +18,4 @@
         - chromium-browser
         - openvpn
         - gnupg2
+        - bluetooth

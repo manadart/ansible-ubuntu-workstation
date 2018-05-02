@@ -20,9 +20,7 @@
         - gnupg2
         - bluetooth
     - name: Copy User Files
-      copy: src={{ item.src }} dest={{ item.dest }}
-      owner: joseph
-      mode: 664
+      copy: src={{ item.src }} dest={{ item.dest }} owner=joseph mode=664
       with_items:
         - { src: 'files/dotvimrc', dest: '/home/joseph/.vimrc' }
         - { src: 'files/dottmux.conf', dest: '/home/joseph/.tmux.conf' }

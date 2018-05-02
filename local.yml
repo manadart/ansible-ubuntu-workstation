@@ -19,3 +19,7 @@
         - openvpn
         - gnupg2
         - bluetooth
+    - name: Install Packages
+      copy: src={{ item.src }} dest={{ item.dest }}
+      with_items:
+        - { src: 'files/dotvimrc', dest: '/home/joseph/.vimrc' }

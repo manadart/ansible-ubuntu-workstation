@@ -25,4 +25,4 @@
         - { src: 'files/dotvimrc', dest: '/home/joseph/.vimrc' }
         - { src: 'files/dottmux.conf', dest: '/home/joseph/.tmux.conf' }
     - name: Use Zsh
-      command: chsh -s $(which zsh) joseph
+      command: usermod --shell usr/bin/zsh joseph

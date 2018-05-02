@@ -16,4 +16,5 @@
         - thunderbird
         - firefox
         - chromium-browser
-        - open-vpn
+        - openvpn
+        - gnupg2

@@ -19,10 +19,13 @@
         - openvpn
         - gnupg2
         - bluetooth
+        - silversearcher-ag
     - name: Copy User Files
       copy: src={{ item.src }} dest={{ item.dest }} owner=joseph group=joseph mode=664
       with_items:
         - { src: 'files/dotvimrc', dest: '/home/joseph/.vimrc' }
         - { src: 'files/dottmux.conf', dest: '/home/joseph/.tmux.conf' }
+        - { src: 'files/dotzshrc', dest: '/home/joseph/.zshrc' }
+        - { src: 'files/dotprofile', dest: '/home/joseph/.profile' }
     - name: Use Zsh
       command: usermod --shell /usr/bin/zsh joseph

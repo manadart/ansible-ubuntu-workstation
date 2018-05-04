@@ -28,5 +28,7 @@
         - { src: 'files/dottmux.conf', dest: '/home/joseph/.tmux.conf' }
         - { src: 'files/dotzshrc', dest: '/home/joseph/.zshrc' }
         - { src: 'files/dotprofile', dest: '/home/joseph/.profile' }
+        - { src: 'files/dotXdefaults', dest: '/home/joseph/.Xdefaults' }
+        - { src: 'files/dotxscreensaver', dest: '/home/joseph/.xscreensaver' }
     - name: Use Zsh
       command: usermod --shell /usr/bin/zsh joseph

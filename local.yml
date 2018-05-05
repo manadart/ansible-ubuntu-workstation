@@ -44,7 +44,7 @@
     - name: Install Vim Plugins
       become: yes
       become_user: joseph
-      command: vim +PluginInstall +qall
+      shell: vim +PluginInstall +qall
     - name: Install Snaps
       command: snap install --classic {{item}}
       with_items:

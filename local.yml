@@ -26,7 +26,6 @@
         - curl
         - laptop-mode-tools
         - upower
-        - skypeforlinux
     - name: Copy User Files
       copy: src={{ item.src }} dest={{ item.dest }} owner=joseph group=joseph mode=664
       with_items:
@@ -44,6 +43,10 @@
       with_items:
         - "git clone https://github.com/VundleVim/Vundle.vim.git /home/joseph/.vim/bundle/Vundle.vim"
         - "vim +PluginInstall +qall"
+    - name: Install Snaps
+      command: snap install --classic {{item}}
+      with_items:
+        - skype
 
 # TODO:
 # Create directory for zsh dir cache.

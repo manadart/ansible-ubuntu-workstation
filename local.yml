@@ -10,6 +10,7 @@
         - tmux
         - git
         - wicd-curses
+        - xterm
         - xmonad
         - xmobar
         - suckless-tools
@@ -23,6 +24,8 @@
         - silversearcher-ag
         - wget
         - curl
+        - laptop-mode-tools
+        - upower
     - name: Copy User Files
       copy: src={{ item.src }} dest={{ item.dest }} owner=joseph group=joseph mode=664
       with_items:

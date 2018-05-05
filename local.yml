@@ -37,12 +37,14 @@
         - { src: 'files/dotxscreensaver', dest: '/home/joseph/.xscreensaver' }
     - name: Use Zsh
       command: usermod --shell /usr/bin/zsh joseph
-    - name: Install Vim Plugins
+    - name: Install Vundle 
+      become: yes
       become_user: joseph
-      command: "{{ item }}"
-      with_items:
-        - "git clone https://github.com/VundleVim/Vundle.vim.git /home/joseph/.vim/bundle/Vundle.vim"
-        - "vim +PluginInstall +qall"
+      git: repo=https://github.com/VundleVim/Vundle.vim.git dest=/home/joseph/.vim/bundle/Vundle.vim
+    - name: Install Vim Plugins
+      become: yes
+      become_user: joseph
+      command: vim +PluginInstall +qall
     - name: Install Snaps
       command: snap install --classic {{item}}
       with_items:

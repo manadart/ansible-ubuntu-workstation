@@ -26,6 +26,7 @@
         - curl
         - laptop-mode-tools
         - upower
+        - skypeforlinux
     - name: Copy User Files
       copy: src={{ item.src }} dest={{ item.dest }} owner=joseph group=joseph mode=664
       with_items:
@@ -37,3 +38,17 @@
         - { src: 'files/dotxscreensaver', dest: '/home/joseph/.xscreensaver' }
     - name: Use Zsh
       command: usermod --shell /usr/bin/zsh joseph
+    - name: Install Vim Plugins
+      become_user: joseph
+      command: "{{ item }}"
+      with_items:
+        - "git clone https://github.com/VundleVim/Vundle.vim.git /home/joseph/.vim/bundle/Vundle.vim"
+        - "vim +PluginInstall +qall"
+
+# TODO:
+# Create directory for zsh dir cache.
+# Xmonad config.
+# Add user ssh-agent service.
+# Install sublime text.
+# Install Go.
+# Install Tor browser.

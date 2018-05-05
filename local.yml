@@ -37,6 +37,8 @@
         - { src: 'files/dotxscreensaver', dest: '/home/joseph/.xscreensaver' }
     - name: Use Zsh
       command: usermod --shell /usr/bin/zsh joseph
+    - name: Ensure Zsh History Directory Exists
+      file: path=/home/joseph/.cache/zsh/dirs state=directory owner=joseph group=joseph mode=664
     - name: Install Vundle 
       become: yes
       become_user: joseph
@@ -51,7 +53,6 @@
         - skype
 
 # TODO:
-# Create directory for zsh dir cache.
 # Xmonad config.
 # Add user ssh-agent service.
 # Install sublime text.

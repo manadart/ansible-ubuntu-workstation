@@ -46,7 +46,7 @@
     - name: Install Vim Plugins
       become: yes
       become_user: joseph
-      shell: vim -E -s +PluginInstall +qall
+      shell: vim -E -s -c "source /home/joseph/.vimrc" -c PluginInstall -c qa
     - name: Install Snaps
       command: snap install --classic {{item}}
       with_items:

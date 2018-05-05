@@ -38,7 +38,7 @@
     - name: Use Zsh
       command: usermod --shell /usr/bin/zsh joseph
     - name: Ensure Zsh History Directory Exists
-      file: path=/home/joseph/.cache/zsh/dirs state=directory owner=joseph group=joseph mode=664
+      file: path=/home/joseph/.cache/zsh/dirs state=directory owner=joseph group=joseph mode=774
     - name: Install Vundle 
       become: yes
       become_user: joseph

@@ -47,6 +47,7 @@
       become: yes
       become_user: joseph
       shell: vim -E -s -c "source /home/joseph/.vimrc" -c PluginInstall -c qa
+      ignore_errors: yes
     - name: Install Snaps
       command: snap install --classic {{item}}
       with_items:

@@ -1,0 +1,17 @@
+UXTerm*Background: black
+UXTerm*Foreground: antique white
+UXTerm*saveLines: 50000
+UXTerm*selectToClipboard: true
+
+UXTerm*renderFont: true
+UXTerm*faceName: DejaVu Sans Mono
+UXTerm*faceSize: 12
+
+uxterm*Background: black
+uxterm*Foreground: antique white
+uxterm*saveLines: 50000
+uxterm*selectToClipboard: true
+
+uxterm*renderFont: true
+uxterm*faceName: DejaVu Sans Mono
+uxterm*faceSize: 12

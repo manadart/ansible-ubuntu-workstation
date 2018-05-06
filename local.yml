@@ -29,19 +29,30 @@
         - pass
         - alsa-utils
         - pulseaudio
+    - name: Ensure User Directories Exist
+      file: path={{item}} state=directory owner=joseph group=joseph mode=774
+      with_items:
+        - /home/joseph/.cache/zsh
+        - /home/joseph/.xmonad
     - name: Copy User Files
-      copy: src={{ item.src }} dest={{ item.dest }} owner=joseph group=joseph mode=664
+      copy: src={{item.src}} dest={{item.dest}} owner=joseph group=joseph mode=664
       with_items:
         - { src: 'files/dotvimrc', dest: '/home/joseph/.vimrc' }
         - { src: 'files/dottmux.conf', dest: '/home/joseph/.tmux.conf' }
         - { src: 'files/dotzshrc', dest: '/home/joseph/.zshrc' }
         - { src: 'files/dotprofile', dest: '/home/joseph/.profile' }
         - { src: 'files/dotXdefaults', dest: '/home/joseph/.Xdefaults' }
+        - { src: 'files/dotXresources', dest: '/home/joseph/.Xresources' }
+        - { src: 'files/dotxinitrc', dest: '/home/joseph/.xinitrc' }
+        - { src: 'files/dotxmobarrc', dest: '/home/joseph/.xmobarrc' }
         - { src: 'files/dotxscreensaver', dest: '/home/joseph/.xscreensaver' }
+        - { src: 'files/xmonad.hs', dest: '/home/joseph/.xmonad/xmonad.hs' }
     - name: Use Zsh
       command: usermod --shell /usr/bin/zsh joseph
-    - name: Ensure Zsh History Directory Exists
-      file: path=/home/joseph/.cache/zsh state=directory owner=joseph group=joseph mode=774
+    - name: Compile Xmonad
+      become: yes
+      become_user: joseph
+      command: xmonad --recompile
     - name: Install Vundle 
       become: yes
       become_user: joseph

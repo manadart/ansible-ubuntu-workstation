@@ -15,6 +15,7 @@
         - xmobar
         - suckless-tools
         - xscreensaver
+        - xinit
         - thunderbird
         - firefox
         - chromium-browser

@@ -39,6 +39,7 @@
         - /home/joseph/go/bin
         - /home/joseph/go/pkg
         - /home/joseph/go/src
+        - /home/joseph/bin
     - name: Copy User Files
       copy: src={{item.src}} dest={{item.dest}} owner=joseph group=joseph mode=664 force=no
       with_items:
@@ -52,6 +53,11 @@
         - { src: 'files/dotxmobarrc', dest: '/home/joseph/.xmobarrc' }
         - { src: 'files/dotxscreensaver', dest: '/home/joseph/.xscreensaver' }
         - { src: 'files/xmonad.hs', dest: '/home/joseph/.xmonad/xmonad.hs' }
+    - name: Copy User Scripts
+      copy: src={{item.src}} dest={{item.dest}} owner=joseph group=joseph mode=774 force=no
+      with_items:
+        - { src: 'files/tor-browser', dest: '/home/joseph/bin/tor-browser' }
+        - { src: 'files/listppa', dest: '/home/joseph/bin/listppa' }
     - name: Use Zsh
       command: usermod --shell /usr/bin/zsh joseph
     - name: Compile Xmonad
@@ -71,11 +77,20 @@
       command: snap install --classic {{item}}
       with_items:
         - skype
-    - name: Install Go
+#    - name: Install Go
+#    shell: |
+#      wget -c https://storage.googleapis.com/golang/go1.10.2.linux-amd64.tar.gz
+#      tar -C /usr/local -xvzf go1.10.2.linux-amd64.tar.gz
+#      rm go1.10.2.linux-amd64.tar.gz
+    - name: Install Tor Browser
+      become: yes
+      become_user: joseph
       shell: |
-        wget -c https://storage.googleapis.com/golang/go1.10.2.linux-amd64.tar.gz
-        tar -C /usr/local -xvzf go1.10.2.linux-amd64.tar.gz
-        rm go1.10.2.linux-amd64.tar.gz
+        wget -c https://www.torproject.org/dist/torbrowser/7.5.3/tor-browser-linux64-7.5.3_en-US.tar.xz
+        tar -C /home/joseph -xvzf tor-browser-linux64-7.5.3_en-US.tar.xz
+        rm tor-browser-linux64-7.5.3_en-US.tar.xz
+
+
 
 # TODO:
 # Add user ssh-agent service.

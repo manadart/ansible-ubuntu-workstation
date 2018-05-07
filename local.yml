@@ -86,8 +86,9 @@
       become: yes
       become_user: joseph
       shell: |
+        cd /home/joseph
         wget -c https://www.torproject.org/dist/torbrowser/7.5.3/tor-browser-linux64-7.5.3_en-US.tar.xz
-        tar -C /home/joseph -xvzf tor-browser-linux64-7.5.3_en-US.tar.xz
+        tar -xvJf tor-browser-linux64-7.5.3_en-US.tar.xz
         rm tor-browser-linux64-7.5.3_en-US.tar.xz
 
 

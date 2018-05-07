@@ -35,6 +35,10 @@
       with_items:
         - /home/joseph/.cache/zsh
         - /home/joseph/.xmonad
+        - /home/joseph/go
+        - /home/joseph/go/bin
+        - /home/joseph/go/pkg
+        - /home/joseph/go/src
     - name: Copy User Files
       copy: src={{item.src}} dest={{item.dest}} owner=joseph group=joseph mode=664 force=no
       with_items:
@@ -67,9 +71,14 @@
       command: snap install --classic {{item}}
       with_items:
         - skype
+    - name: Install Go
+      shell: |
+        wget -c https://storage.googleapis.com/golang/go1.10.2.linux-amd64.tar.gz
+        tar -C /usr/local -xvzf go1.10.2.linux-amd64.tar.gz
+        rm go1.10.2.linux-amd64.tar.gz
 
 # TODO:
 # Add user ssh-agent service.
 # Install sublime text.
-# Install Go.
 # Install Tor browser.
+# Setup YouCompleteMe.

@@ -30,6 +30,7 @@
         - pass
         - alsa-utils
         - pulseaudio
+        - sshuttle
     - name: Ensure User Directories Exist
       file: path={{item}} state=directory owner=joseph group=joseph mode=774
       with_items:
@@ -78,23 +79,22 @@
       with_items:
         - skype
 #    - name: Install Go
-#    shell: |
-#      wget -c https://storage.googleapis.com/golang/go1.10.2.linux-amd64.tar.gz
-#      tar -C /usr/local -xvzf go1.10.2.linux-amd64.tar.gz
-#      rm go1.10.2.linux-amd64.tar.gz
-    - name: Install Tor Browser
-      become: yes
-      become_user: joseph
-      shell: |
-        cd /home/joseph
-        wget -c https://www.torproject.org/dist/torbrowser/7.5.3/tor-browser-linux64-7.5.3_en-US.tar.xz
-        tar -xvJf tor-browser-linux64-7.5.3_en-US.tar.xz
-        rm tor-browser-linux64-7.5.3_en-US.tar.xz
+#      shell: |
+#        wget -c https://storage.googleapis.com/golang/go1.10.2.linux-amd64.tar.gz
+#        tar -C /usr/local -xvzf go1.10.2.linux-amd64.tar.gz
+#        rm go1.10.2.linux-amd64.tar.gz
+#    - name: Install Tor Browser
+#      become: yes
+#      become_user: joseph
+#      shell: |
+#        cd /home/joseph
+#        wget -c https://www.torproject.org/dist/torbrowser/7.5.3/tor-browser-linux64-7.5.3_en-US.tar.xz
+#        tar -xvJf tor-browser-linux64-7.5.3_en-US.tar.xz
+#        rm tor-browser-linux64-7.5.3_en-US.tar.xz
 
 
 
 # TODO:
 # Add user ssh-agent service.
 # Install sublime text.
-# Install Tor browser.
 # Setup YouCompleteMe.

@@ -31,6 +31,7 @@
         - alsa-utils
         - pulseaudio
         - sshuttle
+        - cmake
     - name: Ensure User Directories Exist
       file: path={{item}} state=directory owner=joseph group=joseph mode=774
       with_items:

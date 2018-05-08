@@ -74,6 +74,12 @@
       become_user: joseph
       shell: vim -E -s -c "source /home/joseph/.vimrc" -c PluginInstall -c qa
       ignore_errors: yes
+    - name: Install YouCompleteMe
+      become: yes
+      become_user: joseph
+      shell: |
+        cd /home/joseph/.vim/bundle/YouCompleteMe
+        ./install.py --go-completer
     - name: Install Snaps
       command: snap install --classic {{item}}
       with_items:
@@ -97,4 +103,3 @@
 # TODO:
 # Add user ssh-agent service.
 # Install sublime text.
-# Setup YouCompleteMe.

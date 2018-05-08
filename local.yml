@@ -40,6 +40,7 @@
       command: snap install --classic {{item}}
       with_items:
         - skype
+        - goland
     - name: Ensure User Directories Exist
       file: path={{item}} state=directory owner={{for_user}} group={{for_user}} mode=774 recurse=yes
       with_items:
@@ -109,7 +110,7 @@
 
 
 # TODO:
-# Install GoLand.
 # SSH and GPG Keys.
+# Setup Pass.
 # Add line "AddKeysToAgent yes" to ~/.ssh/config
 # Firefox and Thunderbird add-ons.

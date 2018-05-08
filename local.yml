@@ -48,35 +48,35 @@
     - name: Copy User Files
       copy: src={{item.src}} dest={{item.dest}} owner={{for_user}} group={{for_user}} mode=664 force=no
       with_items:
-        - { src: 'files/dotvimrc', dest: '/home/{{for_user}}/.vimrc' }
-        - { src: 'files/dottmux.conf', dest: '/home/{{for_user}}/.tmux.conf' }
-        - { src: 'files/dotzshrc', dest: '/home/{{for_user}}/.zshrc' }
-        - { src: 'files/dotprofile', dest: '/home/{{for_user}}/.profile' }
-        - { src: 'files/dotXdefaults', dest: '/home/{{for_user}}/.Xdefaults' }
-        - { src: 'files/dotXresources', dest: '/home/{{for_user}}/.Xresources' }
-        - { src: 'files/dotxinitrc', dest: '/home/{{for_user}}/.xinitrc' }
-        - { src: 'files/dotxmobarrc', dest: '/home/{{for_user}}/.xmobarrc' }
-        - { src: 'files/dotxscreensaver', dest: '/home/{{for_user}}/.xscreensaver' }
-        - { src: 'files/xmonad.hs', dest: '/home/{{for_user}}/.xmonad/xmonad.hs' }
+        - { src: "files/dotvimrc", dest: "/home/{{for_user}}/.vimrc" }
+        - { src: "files/dottmux.conf", dest: "/home/{{for_user}}/.tmux.conf" }
+        - { src: "files/dotzshrc", dest: "/home/{{for_user}}/.zshrc" }
+        - { src: "files/dotprofile", dest: "/home/{{for_user}}/.profile" }
+        - { src: "files/dotXdefaults", dest: "/home/{{for_user}}/.Xdefaults" }
+        - { src: "files/dotXresources", dest: "/home/{{for_user}}/.Xresources" }
+        - { src: "files/dotxinitrc", dest: "/home/{{for_user}}/.xinitrc" }
+        - { src: "files/dotxmobarrc", dest: "/home/{{for_user}}/.xmobarrc" }
+        - { src: "files/dotxscreensaver", dest: "/home/{{for_user}}/.xscreensaver" }
+        - { src: "files/xmonad.hs", dest: "/home/{{for_user}}/.xmonad/xmonad.hs" }
     - name: Copy User Scripts
       copy: src={{item.src}} dest={{item.dest}} owner={{for_user}} group={{for_user}} mode=774 force=no
       with_items:
-        - { src: 'files/tor-browser', dest: '/home/{{for_user}}/bin/tor-browser' }
-        - { src: 'files/listppa', dest: '/home/{{for_user}}/bin/listppa' }
+        - { src: "files/tor-browser", dest: "/home/{{for_user}}/bin/tor-browser" }
+        - { src: "files/listppa", dest: "/home/{{for_user}}/bin/listppa" }
     - name: Use Zsh
       command: usermod --shell /usr/bin/zsh {{for_user}}
     - name: Compile Xmonad
-      become_user: {{for_user}}
+      become_user: "{{for_user}}"
       command: xmonad --recompile
     - name: Install Vundle 
-      become_user: {{for_user}}
+      become_user: "{{for_user}}"
       git: repo=https://github.com/VundleVim/Vundle.vim.git dest=/home/{{for_user}}/.vim/bundle/Vundle.vim
     - name: Install Vim Plugins
-      become_user: {{for_user}}
+      become_user: "{{for_user}}"
       shell: vim -E -s -c "source /home/{{for_user}}/.vimrc" -c PluginInstall -c qa
       ignore_errors: yes
     - name: Install YouCompleteMe
-      become_user: {{for_user}}
+      become_user: "{{for_user}}"
       shell: |
         cd /home/{{for_user}}/.vim/bundle/YouCompleteMe
         ./install.py --go-completer

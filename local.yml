@@ -1,5 +1,7 @@
 - hosts: localhost
   become: true
+  vars:
+      for_user: joseph
   tasks:
     - name: Install Packages
       apt: name={{item}}
@@ -32,54 +34,51 @@
         - pulseaudio
         - sshuttle
         - cmake
+        - python-dev
     - name: Ensure User Directories Exist
-      file: path={{item}} state=directory owner=joseph group=joseph mode=774
+      file: path={{item}} state=directory owner={{for_user}} group={{for_user}} mode=774
       with_items:
-        - /home/joseph/.cache/zsh
-        - /home/joseph/.xmonad
-        - /home/joseph/go
-        - /home/joseph/go/bin
-        - /home/joseph/go/pkg
-        - /home/joseph/go/src
-        - /home/joseph/bin
+        - /home/{{for_user}}/.cache/zsh
+        - /home/{{for_user}}/.xmonad
+        - /home/{{for_user}}/go
+        - /home/{{for_user}}/go/bin
+        - /home/{{for_user}}/go/pkg
+        - /home/{{for_user}}/go/src
+        - /home/{{for_user}}/bin
     - name: Copy User Files
-      copy: src={{item.src}} dest={{item.dest}} owner=joseph group=joseph mode=664 force=no
+      copy: src={{item.src}} dest={{item.dest}} owner={{for_user}} group={{for_user}} mode=664 force=no
       with_items:
-        - { src: 'files/dotvimrc', dest: '/home/joseph/.vimrc' }
-        - { src: 'files/dottmux.conf', dest: '/home/joseph/.tmux.conf' }
-        - { src: 'files/dotzshrc', dest: '/home/joseph/.zshrc' }
-        - { src: 'files/dotprofile', dest: '/home/joseph/.profile' }
-        - { src: 'files/dotXdefaults', dest: '/home/joseph/.Xdefaults' }
-        - { src: 'files/dotXresources', dest: '/home/joseph/.Xresources' }
-        - { src: 'files/dotxinitrc', dest: '/home/joseph/.xinitrc' }
-        - { src: 'files/dotxmobarrc', dest: '/home/joseph/.xmobarrc' }
-        - { src: 'files/dotxscreensaver', dest: '/home/joseph/.xscreensaver' }
-        - { src: 'files/xmonad.hs', dest: '/home/joseph/.xmonad/xmonad.hs' }
+        - { src: 'files/dotvimrc', dest: '/home/{{for_user}}/.vimrc' }
+        - { src: 'files/dottmux.conf', dest: '/home/{{for_user}}/.tmux.conf' }
+        - { src: 'files/dotzshrc', dest: '/home/{{for_user}}/.zshrc' }
+        - { src: 'files/dotprofile', dest: '/home/{{for_user}}/.profile' }
+        - { src: 'files/dotXdefaults', dest: '/home/{{for_user}}/.Xdefaults' }
+        - { src: 'files/dotXresources', dest: '/home/{{for_user}}/.Xresources' }
+        - { src: 'files/dotxinitrc', dest: '/home/{{for_user}}/.xinitrc' }
+        - { src: 'files/dotxmobarrc', dest: '/home/{{for_user}}/.xmobarrc' }
+        - { src: 'files/dotxscreensaver', dest: '/home/{{for_user}}/.xscreensaver' }
+        - { src: 'files/xmonad.hs', dest: '/home/{{for_user}}/.xmonad/xmonad.hs' }
     - name: Copy User Scripts
-      copy: src={{item.src}} dest={{item.dest}} owner=joseph group=joseph mode=774 force=no
+      copy: src={{item.src}} dest={{item.dest}} owner={{for_user}} group={{for_user}} mode=774 force=no
       with_items:
-        - { src: 'files/tor-browser', dest: '/home/joseph/bin/tor-browser' }
-        - { src: 'files/listppa', dest: '/home/joseph/bin/listppa' }
+        - { src: 'files/tor-browser', dest: '/home/{{for_user}}/bin/tor-browser' }
+        - { src: 'files/listppa', dest: '/home/{{for_user}}/bin/listppa' }
     - name: Use Zsh
-      command: usermod --shell /usr/bin/zsh joseph
+      command: usermod --shell /usr/bin/zsh {{for_user}}
     - name: Compile Xmonad
-      become: yes
-      become_user: joseph
+      become_user: {{for_user}}
       command: xmonad --recompile
     - name: Install Vundle 
-      become: yes
-      become_user: joseph
-      git: repo=https://github.com/VundleVim/Vundle.vim.git dest=/home/joseph/.vim/bundle/Vundle.vim
+      become_user: {{for_user}}
+      git: repo=https://github.com/VundleVim/Vundle.vim.git dest=/home/{{for_user}}/.vim/bundle/Vundle.vim
     - name: Install Vim Plugins
-      become: yes
-      become_user: joseph
-      shell: vim -E -s -c "source /home/joseph/.vimrc" -c PluginInstall -c qa
+      become_user: {{for_user}}
+      shell: vim -E -s -c "source /home/{{for_user}}/.vimrc" -c PluginInstall -c qa
       ignore_errors: yes
     - name: Install YouCompleteMe
-      become: yes
-      become_user: joseph
+      become_user: {{for_user}}
       shell: |
-        cd /home/joseph/.vim/bundle/YouCompleteMe
+        cd /home/{{for_user}}/.vim/bundle/YouCompleteMe
         ./install.py --go-completer
     - name: Install Snaps
       command: snap install --classic {{item}}
@@ -91,10 +90,9 @@
 #        tar -C /usr/local -xvzf go1.10.2.linux-amd64.tar.gz
 #        rm go1.10.2.linux-amd64.tar.gz
 #    - name: Install Tor Browser
-#      become: yes
-#      become_user: joseph
+#      become_user: {{for_user}}
 #      shell: |
-#        cd /home/joseph
+#        cd /home/{{for_user}}
 #        wget -c https://www.torproject.org/dist/torbrowser/7.5.3/tor-browser-linux64-7.5.3_en-US.tar.xz
 #        tar -xvJf tor-browser-linux64-7.5.3_en-US.tar.xz
 #        rm tor-browser-linux64-7.5.3_en-US.tar.xz
@@ -104,3 +102,6 @@
 # TODO:
 # Add user ssh-agent service.
 # Install sublime text.
+# Install GoLand.
+# SSH and GPG Keys.
+# Firefox and Thunderbird add-ons.

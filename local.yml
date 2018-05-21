@@ -36,6 +36,7 @@
         - cmake
         - python-dev
         - apt-transport-https
+        - udisks2
     - name: Install Snaps
       command: snap install --classic {{item}}
       with_items:

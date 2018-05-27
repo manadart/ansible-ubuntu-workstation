@@ -23,6 +23,7 @@
         - chromium-browser
         - openvpn
         - gnupg2
+        - pinentry-curses
         - bluetooth
         - silversearcher-ag
         - wget

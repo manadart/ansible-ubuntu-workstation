@@ -78,7 +78,7 @@
       command: usermod --shell /usr/bin/zsh {{for_user}}
     - name: Install Zsh Autosuggestions
       become_user: "{{for_user}}"
-      git: repo=https://github.com/zsh-users/zsh-autosuggestions dest=/home{{for_user}}/zsh-autosuggestions    
+      git: repo=https://github.com/zsh-users/zsh-autosuggestions.git dest=/home{{for_user}}/zsh-autosuggestions
     - name: Enable User SSH Agent Service
       become_user: "{{for_user}}"
       command: systemctl --user enable ssh-agent

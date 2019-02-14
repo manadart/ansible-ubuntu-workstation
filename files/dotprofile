@@ -70,5 +70,3 @@ mon_hdmi_off() {
 
 # This prevents blanked windows in IntelliJ IDEA.
 export _JAVA_AWT_WM_NONREPARENTING=1
-
-bindkey -v

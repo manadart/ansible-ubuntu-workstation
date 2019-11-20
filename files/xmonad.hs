@@ -6,12 +6,14 @@ import XMonad.Util.EZConfig
 import System.IO
 import qualified XMonad.StackSet as W
 import XMonad.Actions.CycleWS
+import XMonad.Layout.NoBorders
 
 main = do
     xmproc <- spawnPipe "xmobar"
 
     xmonad $ defaultConfig
         { modMask = mod4Mask
+        , focusedBorderColor = "#7289da"
         , workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
         , manageHook = manageDocks <+> manageHook defaultConfig
         , layoutHook = avoidStruts $ layoutHook defaultConfig

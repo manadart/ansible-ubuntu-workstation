@@ -115,9 +115,9 @@
       become_user: "{{for_user}}"
       shell: |
         cd /home/{{for_user}}
-        wget -c https://www.torproject.org/dist/torbrowser/7.5.3/tor-browser-linux64-7.5.3_en-US.tar.xz
-        tar -xvJf tor-browser-linux64-7.5.3_en-US.tar.xz
-        rm tor-browser-linux64-7.5.3_en-US.tar.xz
+        wget -c https://www.torproject.org/dist/torbrowser/9.0.1/tor-browser-linux64-9.0.1_en-US.tar.xz
+        tar -xvJf tor-browser-linux64-9.0.1_en-US.tar.xz
+        rm tor-browser-linux64-9.0.1_en-US.tar.xz
 
 # TODO:
 # SSH and GPG Keys.

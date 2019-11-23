@@ -37,7 +37,9 @@ alias v='vim'
 alias usbm='udisksctl mount -b'
 alias usbu='udisksctl unmount -b'
 
-alias refreshjujurepo='git checkout upstream/develop && git pull --rebase && git checkout develop && git rebase upstream/develop && git push'
+refreshjujurepo() {
+    git checkout upstream/$1 && git pull --rebase && git checkout $1 && git rebase upstream/$1 && git push
+}
 
 alias venvs="/bin/ls ~/.venvs/"
 vact(){ source "/home/joseph/.venvs/$1/bin/activate"; }

@@ -122,5 +122,6 @@
 # TODO:
 # SSH and GPG Keys.
 # Setup Pass.
-# Add line "AddKeysToAgent yes" to ~/.ssh/config
+# Copy /etc/ssh/ssh_config to ~/.ssh/config  Add line "AddKeysToAgent yes".
 # Firefox and Thunderbird add-ons.
+# Copy profile.d iterator from /etc/profile to /etc/zsh/zprofile.

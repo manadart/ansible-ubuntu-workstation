@@ -17,6 +17,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
 Plugin 'puppetlabs/puppet-syntax-vim'
 Plugin 'mileszs/ack.vim'
+Plugin 'easymotion/vim-easymotion'
 
 call vundle#end()           " Required
 filetype plugin indent on   " Required
@@ -102,9 +103,8 @@ let mapleader="\<SPACE>"
 nnoremap <leader>g :YcmCompleter GoTo<CR>
 nnoremap <leader>o :tabe<SPACE>
 nnoremap <leader>e :Vexplore!<CR>
-nnoremap <leader>w :w<CR>
-nnoremap <leader>q :q<CR>
 nnoremap <Leader>a :Ack!<Space>
+map <Leader> <Plug>(easymotion-prefix)
 
 " nnoremap <leader>t :tabn<CR>
 " nnoremap <leader>T :tabp<CR>

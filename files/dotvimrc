@@ -66,6 +66,11 @@ set smartcase   " unless uppercase letters are used in the regex.
 set hlsearch    " Highlight searches by default.
 set incsearch   " Incrementally search while typing a regex.
 
+" Cursor style for different modes
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
+
 " For Markdown
 let g:vim_markdown_folding_disabled=1
 
@@ -120,4 +125,3 @@ set t_Co=256
 let g:solarized_termcolors=256
 let g:solarized_termtrans = 1
 colorscheme solarized
-

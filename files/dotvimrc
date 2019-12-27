@@ -125,3 +125,6 @@ set t_Co=256
 let g:solarized_termcolors=256
 let g:solarized_termtrans = 1
 colorscheme solarized
+
+autocmd VimEnter * silent exec "! echo -ne '\e[2 q'"
+autocmd VimLeave * silent exec "! echo -ne '\e[6 q'"

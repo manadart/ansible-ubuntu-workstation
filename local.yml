@@ -61,6 +61,7 @@
       copy: src={{item.src}} dest={{item.dest}} owner={{for_user}} group={{for_user}} mode=664 force=no
       with_items:
         - { src: "files/dotvimrc", dest: "/home/{{for_user}}/.vimrc" }
+        - { src: "files/dotideavimrc", dest: "/home/{{for_user}}/.ideavimrc" }
         - { src: "files/dottmux.conf", dest: "/home/{{for_user}}/.tmux.conf" }
         - { src: "files/dotzshrc", dest: "/home/{{for_user}}/.zshrc" }
         - { src: "files/dotprofile", dest: "/home/{{for_user}}/.profile" }

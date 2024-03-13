@@ -8,6 +8,13 @@ import qualified XMonad.StackSet as W
 import XMonad.Actions.CycleWS
 import XMonad.Layout.NoBorders
 
+myManageHook = composeAll
+    [ className =? "Xmessage" --> doFloat
+    , className =? "Alert" --> doFloat
+    , stringProperty "WM_WINDOW_ROLE" =? "alert" --> doFloat
+    , manageDocks
+    ]
+
 main = do
     xmproc <- spawnPipe "xmobar"
 
@@ -15,7 +22,7 @@ main = do
         { modMask = mod4Mask
         , focusedBorderColor = "#7289da"
         , workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
-        , manageHook = manageDocks <+> manageHook defaultConfig
+        , manageHook = myManageHook <+> manageHook defaultConfig
         , layoutHook = avoidStruts $ layoutHook defaultConfig
         -- Keep Xmobar visible.
         , handleEventHook = handleEventHook defaultConfig <+> docksEventHook

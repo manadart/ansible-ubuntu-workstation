@@ -8,10 +8,13 @@ import qualified XMonad.StackSet as W
 import XMonad.Actions.CycleWS
 import XMonad.Layout.NoBorders
 
+doFloatNoFocus :: ManageHook
+doFloatNoFocus = doFloat <+> doF W.focusDown
+
 myManageHook = composeAll
-    [ className =? "Xmessage" --> doFloat
-    , className =? "Alert" --> doFloat
-    , stringProperty "WM_WINDOW_ROLE" =? "alert" --> doFloat
+    [ className =? "Xmessage" --> doFloatNoFocus
+    , className =? "Alert" --> doFloatNoFocus
+    , stringProperty "WM_WINDOW_ROLE" =? "alert" --> doFloatNoFocus
     , manageDocks
     ]
 

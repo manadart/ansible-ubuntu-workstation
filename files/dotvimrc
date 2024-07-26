@@ -15,7 +15,6 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'fatih/vim-go'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
-Plugin 'puppetlabs/puppet-syntax-vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'easymotion/vim-easymotion'
 
@@ -128,3 +127,6 @@ colorscheme solarized
 
 autocmd VimEnter * silent exec "! echo -ne '\e[2 q'"
 autocmd VimLeave * silent exec "! echo -ne '\e[6 q'"
+
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'

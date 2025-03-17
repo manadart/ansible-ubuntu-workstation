@@ -10,3 +10,7 @@ map <Leader>k <Plug>(easymotion-k)
 set hlsearch    " Highlight searches by default.
 set incsearch   " Incrementally search while typing a regex.
 
+augroup SwitchToNormalMode
+  au!
+  au TabEnter * call feedkeys("\<Esc>")
+augroup END
